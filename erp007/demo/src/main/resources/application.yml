@@ -1,0 +1,12 @@
+
+server:
+  port: 8080
+#  前端访问后端的端口号  于视频8090 不同 ，前后端口平台接口不匹配
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/erp01?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimeZone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
