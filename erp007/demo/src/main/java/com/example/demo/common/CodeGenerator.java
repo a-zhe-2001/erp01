@@ -50,8 +50,8 @@ public class CodeGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/demo";
-        gc.setOutputDir(projectPath + "/src/main/java");
+        String projectPath = System.getProperty("user.dir");
+        gc.setOutputDir(projectPath + "/src/main");
         gc.setAuthor("kk");
         gc.setOpen(false);
         gc.setSwagger2(true); //实体属性 Swagger2 注解
@@ -64,7 +64,7 @@ public class CodeGenerator {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         // 一、修改数据源
-        dsc.setUrl("jdbc:mysql://localhost:3306/wms?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://localhost:3306/erp01?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimeZone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
@@ -75,7 +75,7 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
         // 二、模块配置
-        pc.setParent("com.liush.wms")
+        pc.setParent("java.com.example.demo")
                 .setEntity("entity")
                 .setMapper("mapper")
                 .setService("service")
@@ -94,7 +94,7 @@ public class CodeGenerator {
         // 如果模板引擎是 freemarker
         String templatePath = "templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
-        // String templatePath = "/templates/mapper.xml.vm";
+//         String templatePath = "/templates/mapper.xml.vm";
 
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
