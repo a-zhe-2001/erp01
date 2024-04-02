@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.common.QueryPageParam;
+import com.example.demo.common.Result;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,27 @@ public List<User> listPageC(@RequestBody QueryPageParam query) {
     return result.getRecords();
 }
 
+
+    @PostMapping("/listPageC1")
+    public Result listPageC1(@RequestBody QueryPageParam query) {
+        HashMap param = query.getParam();
+        String name = (String) param.get("name");
+        System.out.println("name===" + (String) param.get("name"));
+
+        Page<User> page = new Page();
+        page.setCurrent(query.getPageNum());
+        page.setSize(query.getPageSize());
+
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper();
+        lambdaQueryWrapper.like(User::getName, name);
+
+        IPage result = userService.pageC(page);
+//    IPage result = userService.pageCC(page, lambdaQueryWrapper);
+        System.out.println("total==" + result.getTotal());
+
+        return Result.suc(result.getRecords(),result.getTotal());
+//        分页查询Result.java
+    }
 
 
 //
